@@ -59,7 +59,8 @@ class SitioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sitio = Sitio::find($id);
+        return view('sitio.edit')->with('sitio', $sitio);
     }
 
     /**
@@ -71,7 +72,15 @@ class SitioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sitio = Sitio::find($id);
+
+        $sitio->titulo = $request->get('titulo');
+        $sitio->tema = $request->get('tema');
+        $sitio->url = $request->get('url'); 
+
+        $sitio->save();
+
+        return redirect('/sitios');
     }
 
     /**
@@ -82,7 +91,9 @@ class SitioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sitio = Sitio::find($id);
+        $sitio->delete();
+        return redirect('/sitios');
     }
 
     public function storeNewUser(Request $request){
