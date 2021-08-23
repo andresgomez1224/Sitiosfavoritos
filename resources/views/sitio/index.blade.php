@@ -30,8 +30,9 @@
             <td><a href="{{ $sitio->url }}" target="__blank" class="link">Link del Sitio</a></td>
             @if(Auth::user()->type_user == 1)
             <td>
+                
+                <a href="{{route('editar', $sitio->id)}}" class="btn btn-info">Editar</a>
                 <form action="{{ route ('sitios.destroy',$sitio->id)}}" method="POST">
-                <a href="/sitios/{{ $sitio->id }}/edit" class="btn btn-info">Editar</a>
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Borrar</button>

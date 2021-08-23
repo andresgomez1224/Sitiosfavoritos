@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::resource('sitios', 'App\Http\Controllers\SitioController');
 
@@ -27,3 +27,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [App\Http\Con
 
 
 Route::post('registrar', [App\Http\Controllers\SitioController::class, 'storeNewUser'])->name('registrar');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('editar/{sitio}', [App\Http\Controllers\SitioController::class, 'edit'])->name('editar');
